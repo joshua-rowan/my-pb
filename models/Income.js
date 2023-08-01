@@ -1,29 +1,33 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class BudgetReport extends Model { }
+class Income extends Model {}
 
-BudgetReport.init(
+Income.init(
     {
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true,
+            autoIncrement: true
         },
-        total_income: {
+        source_name:{
+            type:DataTypes.STRING,
+            allowNull: false
+        },
+        amount:{
             type: DataTypes.DECIMAL,
-            allowNull: true,
-                validate: {
-                    isDecimal: true,
+            allowNull: false,
+                validate:{
+                    isDecimal:true
                 }
         },
-        total_expense: {
+        total_amount:{
             type: DataTypes.DECIMAL,
             allowNull: true,
-                validate: {
-                    isDecimal: true,
-                }
+            validate:{ 
+                isDecimal:true
+            }
         }
     },
     {
@@ -31,12 +35,8 @@ BudgetReport.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'BudgetReport',
-    }
-
+        modelName: 'Income',
+      }
 )
 
-
-
-
-module.exports = BudgetReport
+module.exports = Income
